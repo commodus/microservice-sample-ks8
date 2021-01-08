@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcs-frontend-2-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mcs-frontend-2
+  minReadySeconds: 5
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mcs-frontend-2
+    spec:
+      containers:
+      - name: frontend-2
+        image: satoshidemohub.azurecr.io/mcs-frontend-2:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+          - name: Registration_Frontend_Url_Base
+            value: mcs-frontend-1
+          - name: Web_Api_Url
+            value: mcs-webapi
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcs-frontend-2-svc
+spec:
+  selector:
+    app: mcs-frontend-2
+  ports:
+    - protocol: TCP
+      port: 80
+      nodePort: 30300
+  type: NodePort

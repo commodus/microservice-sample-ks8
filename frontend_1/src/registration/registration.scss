@@ -1,0 +1,30 @@
+.registration {
+  &-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+  }
+
+  &-forwarding {
+    font-size: 16px;
+  }
+
+  &-form {
+    margin-top: 10%;
+    border: 3px;
+    border-style: outset;
+    padding: 10px;
+  }
+
+  &-formGroup {
+    &-submit {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  &-errorMessage {
+    color: red;
+  }
+}

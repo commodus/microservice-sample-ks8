@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mcs-webapi-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mcs-webapi
+  minReadySeconds: 5
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mcs-webapi
+    spec:
+      containers:
+      - name: webapi
+        image: satoshidemohub.azurecr.io/mcs-webapi:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4001
+        env:
+          - name: MONGODB_URI
+            value: mongodb+srv://deneme:deneme@cluster0.f7oko.mongodb.net/financeDb
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapi-svc
+spec:
+  selector:
+    app: mcs-webapi
+  ports:
+    - protocol: TCP
+      port: 4001
+      targetPort: 4001
+  type: LoadBalancer

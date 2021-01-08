@@ -1,0 +1,16 @@
+# dependencies
+/frontend_1/node_modules
+/frontend_2/node_modules
+/web-api/node_modules
+/web-api/.env
+
+# misc
+.DS_Store
+/dist
+/.eslintcache
+/coverage
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+/public/uploads
